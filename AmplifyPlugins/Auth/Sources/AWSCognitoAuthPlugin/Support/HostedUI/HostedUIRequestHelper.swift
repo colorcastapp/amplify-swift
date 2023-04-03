@@ -43,7 +43,6 @@ struct HostedUIRequestHelper {
             .init(name: "redirect_uri", value: signInURI),
             .init(name: "scope", value: normalizedScope),
             .init(name: "code_challenge", value: codeChallenge)
-            .init(name: "disallow_webview", value: true)
         ]
 
         if let userContextData = userContextData {
@@ -108,9 +107,7 @@ struct HostedUIRequestHelper {
             .init(name: "client_id", value: configuration.clientId),
             .init(name: "code", value: result.code),
             .init(name: "redirect_uri", value: signInRedirectURI),
-            .init(name: "code_verifier", value: result.codeVerifier)
-            .init(name: "disallow_webview", value: true)
-        ]
+            .init(name: "code_verifier", value: result.codeVerifier)]
 
         guard let body = queryComponents.query else {
             throw HostedUIError.tokenURI
@@ -140,9 +137,7 @@ struct HostedUIRequestHelper {
             queryComponents.queryItems = [
                 .init(name: "grant_type", value: "refresh_token"),
                 .init(name: "refresh_token", value: refreshToken),
-                .init(name: "client_id", value: configuration.clientId)
-                .init(name: "disallow_webview", value: true)
-            ]
+                .init(name: "client_id", value: configuration.clientId)]
 
             guard let body = queryComponents.query else {
                 throw HostedUIError.tokenURI
